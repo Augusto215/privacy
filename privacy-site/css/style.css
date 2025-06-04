@@ -1,0 +1,93 @@
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Estilos da tela de login */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+}
+
+/* Estilos para navegação inferior */
+.navbar .nav-link {
+    color: #6c757d;
+    padding: 0.5rem 0;
+    flex: 1;
+    transition: color 0.2s;
+}
+
+.navbar .nav-link.active {
+    color: #fd7e14;
+    border-top: 2px solid #fd7e14;
+    margin-top: -2px;
+}
+
+.navbar .nav-link:hover {
+    color: #fd7e14;
+}
+
+/* Estilos para botões */
+.btn-primary {
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #e76b00;
+    border-color: #e76b00;
+}
+
+/* Estilos para a seção de vendas */
+.vendas-header {
+    background-color: #fff8e1 !important;
+}
+
+.vendas-header i {
+    color: #fd7e14;
+}
+
+/* Estilos para cards */
+.card {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para texto */
+h3.text-secondary {
+    color: #6c757d !important;
+    font-weight: 500;
+}
+
+/* Estilos para dropdown do perfil */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 576px) {
+    .navbar .small {
+        font-size: 0.65rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    .vendas-header h2 {
+        font-size: 1.25rem;
+    }
+}

@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rede Social Layout</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @media (max-width: 400px) {
+            body {
+                background-color: #f5f5f5;
+            }
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar .user-profile {
+            text-align: center;
+            padding: 30px 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar .user-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #f8f9fa;
+            cursor: pointer;
+        }
+        
+        .sidebar .nav-link {
+            color: #666;
+            padding: 16px 25px;
+            border: none;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: #f8f9fa;
+            color: #007bff;
+            transform: translateX(5px);
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 15px;
+            width: 25px;
+            font-size: 16px;
+        }
+        
+        .new-post-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            padding: 15px 35px;
+            margin: 25px;
+            width: calc(100% - 50px);
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        .new-post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .content-wrapper {
+            padding: 0 25px;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .post-composer {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .post-composer h5 {
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+        }
+        
+        .post-composer textarea {
+            border: none;
+            resize: none;
+            outline: none;
+            width: 100%;
+            min-height: 100px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .post-composer .composer-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .composer-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .composer-icons i {
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+            padding: 8px;
+            border-radius: 8px;
+        }
+        
+        .composer-icons i:hover {
+            color: #007bff;
+            background-color: #f0f8ff;
+        }
+        
+        .live-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .alert {
+            margin: 0 25px 30px 25px;
+            border-radius: 15px;
+            padding: 20px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+        
+        .post-card {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .post-card:last-child {
+            border-bottom: none;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .post-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #f8f9fa;
+        }
+        
+        .post-user-info h6 {
+            margin: 0;
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .post-user-info small {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .post-time {
+            margin-left: auto;
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .post-content {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 15px;
+            color: #333;
+        }
+        
+        .post-media {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .post-media img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 30px;
+            color: #666;
+            justify-content: center;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .post-actions span {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .post-actions span:hover {
+            color: #007bff;
+            background-color: #f0f8ff;
+        }
+        
+        .post-actions i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .recommendations {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .recommendations-header {
+            padding: 20px 20px 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .recommendations-header h6 {
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+            margin: 0;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-actions i {
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .header-actions i:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .search-box {
+            display: none; /* Removido da visualização inicial */
+        }
+        
+        .recommendations-list {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .profile-recommendation {
+            position: relative;
+            height: 120px;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: white;
+            overflow: hidden;
+            border-radius: 0;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .profile-recommendation:last-child {
+            border-bottom: none;
+        }
+        
+        .profile-recommendation:hover {
+            transform: scale(1.02);
+            color: white;
+        }
+        
+        .recommendation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .recommendation-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+            z-index: 2;
+        }
+        
+        .recommendation-content {
+            position: relative;
+            z-index: 3;
+            padding: 15px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .recommendation-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .recommendation-info {
+            flex: 1;
+        }
+        
+        .recommendation-info h6 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 15px;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .recommendation-info small {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .recommendation-menu {
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .recommendation-menu:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .recommendation-badge {
+            display: none; /* Removido para ficar igual à imagem */
+        }
+        
+        .mobile-header {
+            display: none; /* Escondido por padrão */
+            background: white;
+            padding: 12px 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .mobile-logo i {
+            background: linear-gradient(45deg, #FF7B47, #FF5722);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        
+        .mobile-logo span {
+            font-weight: 500;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .mobile-nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        
+        .mobile-nav-icons i {
+            color: #666;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-icons .notification-badge {
+            position: relative;
+        }
+        
+        .mobile-nav-icons .badge-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .mobile-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        /* Avatar Dropdown */
+        .avatar-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 280px;
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+        }
+        
+        .dropdown-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .dropdown-header h6 {
+            margin: 0 0 8px 0;
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .dropdown-stats {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .dropdown-menu-list {
+            padding: 10px 0;
+        }
+        
+        .dropdown-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+        
+        .dropdown-menu-item:hover {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .dropdown-menu-item i {
+            margin-right: 12px;
+            width: 20px;
+            font-size: 16px;
+        }
+        
+        .dropdown-separator {
+            height: 1px;
+            background-color: #eee;
+            margin: 8px 0;
+        }
+        
+        .avatar-wrapper {
+            position: relative;
+        }
+        
+        /* Mobile Post Composer */
+        .mobile-composer {
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            padding: 20px;
+            border-bottom: 8px solid #f5f5f5;
+            display: none; /* Escondido por padrão */
+        }
+        
+        .mobile-composer textarea {
+            border: none;
+            resize: none;
+            outline: none;
+            width: 100%;
+            min-height: 50px;
+            font-size: 15px;
+            color: #999;
+            background: transparent;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .mobile-composer textarea::placeholder {
+            color: #bbb;
+        }
+        
+        .mobile-composer-tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-tools-left {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .mobile-tools-left i {
+            color: #999;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 2px;
+        }
+        
+        .mobile-publish-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 0;
+            font-weight: 600;
+            font-size: 15px;
+            width: 100%;
+        }
+        
+        /* Mobile Posts */
+        .mobile-posts {
+            margin: 0;
+            padding: 0;
+            display: none; /* Escondido por padrão */
+        }
+        
+        .mobile-post {
+            background: white;
+            margin-bottom: 8px;
+            padding: 15px;
+        }
+        
+        .mobile-post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+        }
+        
+        .mobile-post-user-info h6 {
+            margin: 0;
+            font-weight: 700;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .mobile-post-user-info small {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .mobile-post-time {
+            margin-left: auto;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .mobile-post-content {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .mobile-post-media {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-post-media img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .mobile-post-actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .mobile-post-actions span {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .mobile-post-actions span:hover {
+            color: #007bff;
+            background-color: #f0f8ff;
+        }
+        
+        .mobile-post-actions i {
+            margin-right: 6px;
+            font-size: 14px;
+        }
+        .mobile-recommendations {
+            margin: 0;
+            padding: 0 20px;
+        }
+        
+        .mobile-recommendations .recommendations {
+            box-shadow: none;
+            background: transparent;
+            border-radius: 0;
+        }
+        
+        .mobile-recommendations .recommendations-header {
+            background: transparent;
+            border-bottom: none;
+            padding: 20px 0 15px 0;
+        }
+        
+        .mobile-recommendations .recommendations-header h6 {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .mobile-recommendations .header-actions i {
+            color: #999;
+            font-size: 16px;
+        }
+        
+        .mobile-recommendations .profile-recommendation {
+            margin-bottom: 12px;
+            border-radius: 15px;
+            border-bottom: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            height: 100px;
+        }
+        
+        .mobile-recommendations .profile-recommendation:last-child {
+            margin-bottom: 20px;
+        }
+        
+        .mobile-recommendations .recommendation-content {
+            padding: 12px 15px;
+        }
+        
+        .mobile-recommendations .recommendation-avatar {
+            width: 45px;
+            height: 45px;
+        }
+        
+        .mobile-recommendations .recommendation-info h6 {
+            font-size: 14px;
+        }
+        
+        .mobile-recommendations .recommendation-info small {
+            font-size: 12px;
+        }
+        
+        /* Responsive Media Queries */
+        @media (max-width: 400px) {
+            .main-container {
+                padding: 0;
+                max-width: 100%;
+                display: none; /* Esconde a versão desktop */
+            }
+            
+            .mobile-header {
+                display: block;
+            }
+            
+            .mobile-composer {
+                display: block;
+            }
+            
+            .mobile-posts {
+                display: block;
+            }
+            
+            .mobile-recommendations {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 401px) {
+            .mobile-header,
+            .mobile-composer,
+            .mobile-posts,
+            .mobile-recommendations {
+                display: none;
+            }
+            
+            .main-container {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .composer-icons {
+                justify-content: center;
+            }
+            
+            .post-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .post-media img {
+                height: 300px;
+            }
+        }
+        
+        /* Vendas Page Styles */
+        .vendas-page {
+            display: none;
+        }
+        
+        .vendas-page.active {
+            display: block;
+        }
+        
+        .vendas-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            padding: 25px;
+            gap: 15px;
+        }
+        
+        .vendas-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 30px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        
+        .vendas-nav-item:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+            transform: translateY(-3px);
+        }
+        
+        .vendas-nav-item.active {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+        
+        .vendas-nav-item i {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .vendas-nav-item span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .vendas-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .vendas-badge {
+            background: #f5f3f0;
+            color: #8b7355;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .vendas-badge i {
+            margin-right: 10px;
+        }
+        
+        .vendas-metric {
+            margin-bottom: 40px;
+        }
+        
+        .vendas-metric:last-child {
+            margin-bottom: 0;
+        }
+        
+        .vendas-metric h6 {
+            color: #666;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .vendas-metric .amount {
+            color: #333;
+            font-size: 38px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .home-page.active {
+            display: block;
+        }
+        
+        .home-page {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="mobile-header-content">
+            <div class="mobile-logo">
+                <i class="fas fa-user-shield"></i>
+                <span>privacy.com.br</span>
+            </div>
+            <div class="mobile-nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-plus"></i>
+                <div class="notification-badge">
+                    <i class="fas fa-comment"></i>
+                    <span class="badge-count">9</span>
+                </div>
+                <i class="fas fa-bell"></i>
+                <div class="avatar-wrapper">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" alt="Avatar" class="mobile-avatar" onclick="toggleAvatarDropdown()">
+                    
+                    <!-- Avatar Dropdown -->
+                    <div class="avatar-dropdown" id="avatarDropdown">
+                        <div class="dropdown-header">
+                            <h6>Safadabemperversa</h6>
+                            <div class="dropdown-stats">0 seguidores 38 seguindo</div>
+                        </div>
+                        
+                        <div class="dropdown-menu-list">
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-user"></i>
+                                Meu Perfil
+                            </a>
+                            <a href="vendas.html" class="dropdown-menu-item" onclick="showPage('vendas'); toggleAvatarDropdown();">
+                                <i class="fas fa-dollar-sign"></i>
+                                Vendas
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-users"></i>
+                                Seguidores
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-bookmark"></i>
+                                Coleções
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-credit-card"></i>
+                                Meus Cartões
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-user-plus"></i>
+                                Torne-se Criador
+                            </a>
+                            
+                            <div class="dropdown-separator"></div>
+                            
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-cog"></i>
+                                Configurações
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Segurança e Privacidade
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-globe"></i>
+                                Português
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-question-circle"></i>
+                                Ajuda
+                            </a>
+                            
+                            <div class="dropdown-separator"></div>
+                            
+                            <a href="#" class="dropdown-menu-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Composer -->
+    <div class="mobile-composer">
+        <textarea placeholder="Escreva a descrição do post..."></textarea>
+        <div class="mobile-composer-tools">
+            <div class="mobile-tools-left">
+                <i class="fas fa-image"></i>
+                <i class="fas fa-microphone"></i>
+                <i class="fas fa-folder"></i>
+                <i class="fas fa-clock"></i>
+                <i class="fas fa-check-square"></i>
+                <i class="fas fa-align-left"></i>
+                <i class="fas fa-smile"></i>
+                <i class="fas fa-tag"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div>
+        <button class="mobile-publish-btn">Publicar</button>
+    </div>
+
+    <!-- Mobile Posts -->
+    <div class="mobile-posts">
+        <div class="mobile-post">
+            <div class="mobile-post-header">
+                <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="mobile-post-avatar">
+                <div class="mobile-post-user-info">
+                    <h6>BAD MI <i class="fas fa-check-circle" style="color: #007bff;"></i></h6>
+                    <small>@badmi</small>
+                </div>
+                <div class="mobile-post-time">
+                    <i class="far fa-clock"></i> 23:59
+                    <i class="fas fa-ellipsis-v ms-2"></i>
+                </div>
+            </div>
+            
+            <div class="mobile-post-content">
+                <p>GOZEI ATÉ ESGUICHAR VÁRIAS VEZES 9.99! 😍 💦 💦<br>
+                Minha cama ficou toda encharcada depois de gozar e ter vários SQUIRTS INCRÍVEIS! VÍDEO! 😍</p>
+            </div>
+            
+            <div class="mobile-post-media">
+                <img src="./img/guvsbdswsaaj9ki.webp" alt="Post image">
+            </div>
+            
+            <div class="mobile-post-actions">
+                <span><i class="far fa-heart"></i> Curtir</span>
+                <span><i class="far fa-comment"></i> Comentar</span>
+                <span><i class="fas fa-share"></i> Compartilhar</span>
+            </div>
+        </div>
+
+        <div class="mobile-post">
+            <div class="mobile-post-header">
+                <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="mobile-post-avatar">
+                <div class="mobile-post-user-info">
+                    <h6>BAD MI <i class="fas fa-check-circle" style="color: #007bff;"></i></h6>
+                    <small>@badmi</small>
+                </div>
+                <div class="mobile-post-time">
+                    <i class="far fa-clock"></i> 22:15
+                    <i class="fas fa-ellipsis-v ms-2"></i>
+                </div>
+            </div>
+            
+            <div class="mobile-post-content">
+                <p>Quem me ver tão novinha nua não sabe oque sou capaz entre quatro paredes, as vezes nem precisa ser entre quatro paredes hahha 😍</p>
+            </div>
+            
+            <div class="mobile-post-media">
+                <img src="./img/entretenimento-mc-mirella-1743188480.webp" alt="Post image">
+            </div>
+            
+            <div class="mobile-post-actions">
+                <span><i class="far fa-heart"></i> Curtir</span>
+                <span><i class="far fa-comment"></i> Comentar</span>
+                <span><i class="fas fa-share"></i> Compartilhar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Recommendations -->
+    <div class="mobile-recommendations">
+        <div class="recommendations">
+            <div class="recommendations-header">
+                <h6>Perfis Recomendados</h6>
+                <div class="header-actions">
+                    <i class="fas fa-sync-alt"></i>
+                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="recommendations-list">
+                <a href="#" class="profile-recommendation">
+                    <img src="./img/clara-aguilar_4957.webp" alt="Background" class="recommendation-bg">
+                    <div class="recommendation-overlay"></div>
+                    <div class="recommendation-content">
+                        <img src="./img/clara-aguilar_4957.webp" alt="Clara" class="recommendation-avatar">
+                        <div class="recommendation-info">
+                            <h6>Clara EX BBB <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                            <small>@Claraaguilar</small>
+                        </div>
+                        <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="profile-recommendation">
+                    <img src="./img/guvsbdswsaaj9ki.webp" alt="Background" class="recommendation-bg">
+                    <div class="recommendation-overlay"></div>
+                    <div class="recommendation-content">
+                        <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="recommendation-avatar">
+                        <div class="recommendation-info">
+                            <h6>BAD MI | MC MIREL... <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                            <small>@badmi</small>
+                        </div>
+                        <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="profile-recommendation">
+                    <img src="./img/tal-da-loira_0080.webp" alt="Background" class="recommendation-bg">
+                    <div class="recommendation-overlay"></div>
+                    <div class="recommendation-content">
+                        <img src="./img/tal-da-loira_0080.webp" alt="Talda" class="recommendation-avatar">
+                        <div class="recommendation-info">
+                            <h6>TALDALÔIRAOFICIAL <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                            <small>@taldaloiraoficial</small>
+                        </div>
+                        <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="profile-recommendation">
+                    <img src="./img/Gaby-Lopez-@gabylopez-Melhores-Videos-Porno-Onlyfans-Gratis-10.png.webp" alt="Background" class="recommendation-bg">
+                    <div class="recommendation-overlay"></div>
+                    <div class="recommendation-content">
+                        <img src="./img/Gaby-Lopez-@gabylopez-Melhores-Videos-Porno-Onlyfans-Gratis-10.png.webp" alt="Gaby Lopez" class="recommendation-avatar">
+                        <div class="recommendation-info">
+                            <h6>GABY LOPEZ <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                            <small>@gabylopez</small>
+                        </div>
+                        <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="profile-recommendation">
+                    <img src="./img/vf3BRJqX.webp" alt="Background" class="recommendation-bg">
+                    <div class="recommendation-overlay"></div>
+                    <div class="recommendation-content">
+                        <img src="./img/vf3BRJqX.webp" alt="Maria Gabriela" class="recommendation-avatar">
+                        <div class="recommendation-info">
+                            <h6>MARIA GABRIELA <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                            <small>@Mariagabrielavip</small>
+                        </div>
+                        <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="row gx-4">
+            <!-- Sidebar Esquerda -->
+            <div class="col-lg-3 col-md-12">
+                <div class="sidebar">
+                    <div class="user-profile">
+                        <div class="avatar-wrapper">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" alt="Avatar" class="user-avatar" onclick="toggleAvatarDropdown()">
+                            
+                            <!-- Avatar Dropdown Desktop -->
+                            <div class="avatar-dropdown" id="avatarDropdownDesktop">
+                                <div class="dropdown-header">
+                                    <h6>Safadabemperversa</h6>
+                                    <div class="dropdown-stats">0 seguidores 38 seguindo</div>
+                                </div>
+                                
+                                <div class="dropdown-menu-list">
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-user"></i>
+                                        Meu Perfil
+                                    </a>
+                                    <a href="ven" class="dropdown-menu-item" >
+                                        <i class="fas fa-dollar-sign"></i>
+                                        Vendas
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-users"></i>
+                                        Seguidores
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-bookmark"></i>
+                                        Coleções
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-credit-card"></i>
+                                        Meus Cartões
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-user-plus"></i>
+                                        Torne-se Criador
+                                    </a>
+                                    
+                                    <div class="dropdown-separator"></div>
+                                    
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-cog"></i>
+                                        Configurações
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        Segurança e Privacidade
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-globe"></i>
+                                        Português
+                                    </a>
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-question-circle"></i>
+                                        Ajuda
+                                    </a>
+                                    
+                                    <div class="dropdown-separator"></div>
+                                    
+                                    <a href="#" class="dropdown-menu-item">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Sair
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="mb-1"><strong>Safadabemperversa</strong></h6>
+                        <small class="text-muted">38 seguindos</small>
+                    </div>
+                    
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" href="#" onclick="showPage('home')"><i class="fas fa-home"></i> Página inicial</a>
+                        <a class="nav-link" href="vendas.html" onclick="showPage('vendas')"><i class="fas fa-dollar-sign"></i> Vendas</a>
+                        <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Torne-se Criador</a>
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notificação</a>
+                        <a class="nav-link" href="#"><i class="fas fa-comment"></i> Chat</a>
+                        <a class="nav-link" href="#"><i class="fas fa-bookmark"></i> Coleções</a>
+                        <a class="nav-link" href="#"><i class="fas fa-credit-card"></i> Meus Cartões</a>
+                        <a class="nav-link" href="#"><i class="fas fa-share-alt"></i> topshare</a>
+                        <a class="nav-link" href="#"><i class="fas fa-ellipsis-h"></i> Mais</a>
+                    </nav>
+                    
+                    <button class="new-post-btn">
+                        <i class="fas fa-plus me-2"></i>Nova Publicação
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Conteúdo Principal -->
+            <div class="col-lg-6 col-md-12">
+                <div class="content-wrapper">
+                    <!-- Página Home -->
+                    <div class="home-page active">
+                        <div class="main-content">
+                            <div class="post-composer">
+                                <h5>PÁGINA INICIAL</h5>
+                                <textarea placeholder="Escreva a descrição do post..."></textarea>
+                                <div class="composer-actions">
+                                    <div class="composer-icons">
+                                        <i class="fas fa-image"></i>
+                                        <i class="fas fa-video"></i>
+                                        <i class="fas fa-calendar"></i>
+                                        <i class="fas fa-clock"></i>
+                                        <i class="fas fa-calendar-week"></i>
+                                        <i class="fas fa-align-left"></i>
+                                        <i class="fas fa-sticky-note"></i>
+                                        <i class="fas fa-smile"></i>
+                                        <i class="fas fa-tag"></i>
+                                        <i class="fas fa-at"></i>
+                                    </div>
+                                    <button class="live-btn">Live em breve</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notificação -->
+                        <div class="alert alert-warning border-start border-warning border-4">
+                            <small>Olá, Safadabemperversa a sua assinatura com o(a) criador(a) Brumedeiros encerrou... 
+                            Não perca tempo e clique <a href="#" class="text-decoration-none">aqui</a> para renovar a sua assinatura e continuar acompanhando!</small>
+                        </div>
+                        
+                        
+                        <!-- Post 1 -->
+                        <div class="main-content">
+                            <div class="post-card">
+                                <div class="post-header">
+                                    <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="post-avatar">
+                                    <div class="post-user-info">
+                                        <h6>BAD MI <i class="fas fa-check-circle text-primary"></i></h6>
+                                        <small>@badmi</small>
+                                    </div>
+                                    <div class="post-time">
+                                        <i class="far fa-clock"></i> 23:59
+                                        <i class="fas fa-ellipsis-v ms-2"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="post-content">
+                                    <p>GOZEI ATÉ ESGUICHAR VÁRIAS VEZES 9.99! 😍 💦 💦<br>
+                                    Minha cama ficou toda encharcada depois de gozar e ter vários SQUIRTS INCRÍVEIS! VÍDEO! 😍</p>
+                                </div>
+                                
+                                <div class="post-media">
+                                    <img src="./img/guvsbdswsaaj9ki.webp" alt="Post image">
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <span><i class="far fa-heart"></i> Curtir</span>
+                                    <span><i class="far fa-comment"></i> Comentar</span>
+                                    <span><i class="fas fa-share"></i> Compartilhar</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="main-content">
+                            <div class="post-card">
+                                <div class="post-header">
+                                    <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="post-avatar">
+                                    <div class="post-user-info">
+                                        <h6>BAD MI <i class="fas fa-check-circle text-primary"></i></h6>
+                                        <small>@badmi</small>
+                                    </div>
+                                    <div class="post-time">
+                                        <i class="far fa-clock"></i> 22:15
+                                        <i class="fas fa-ellipsis-v ms-2"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="post-content">
+                                    <p>Quem me ver tão novinha nua não sabe oque sou capaz entre quatro paredes, as vezes nem precisa ser entre quatro paredes hahha 😍</p>
+                                </div>
+                                
+                                <div class="post-media">
+                                    <img src="./img/entretenimento-mc-mirella-1743188480.webp" alt="Post image">
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <span><i class="far fa-heart"></i> Curtir</span>
+                                    <span><i class="far fa-comment"></i> Comentar</span>
+                                    <span><i class="fas fa-share"></i> Compartilhar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Página Vendas -->
+                    <div class="vendas-page">
+                        <!-- Navegação Vendas -->
+                        <div class="vendas-nav">
+                            <a href="#" class="vendas-nav-item active">
+                                <i class="fas fa-th-list"></i>
+                                <span>Resumo</span>
+                            </a>
+                            <a href="#" class="vendas-nav-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Receitas</span>
+                            </a>
+                            <a href="#" class="vendas-nav-item">
+                                <i class="fas fa-users"></i>
+                                <span>Assinantes</span>
+                            </a>
+                            <a href="#" class="vendas-nav-item">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Novos</span>
+                            </a>
+                            <a href="#" class="vendas-nav-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Estatísticas</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Card Vendas -->
+                        <div class="vendas-card">
+                            <div class="vendas-badge">
+                                <i class="fas fa-dollar-sign"></i>
+                                VENDAS
+                            </div>
+                            
+                            <div class="vendas-metric">
+                                <h6>Hoje</h6>
+                                <h2 class="amount">R$ 63,68</h2>
+                            </div>
+                            
+                            <div class="vendas-metric">
+                                <h6>No mês</h6>
+                                <h2 class="amount">R$ 770,53</h2>
+                            </div>
+                            
+                            <div class="vendas-metric">
+                                <h6>Total faturamento histórico</h6>
+                                <h2 class="amount">R$ 3.055,88</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Direita -->
+            <div class="col-lg-3 col-md-12">
+                <div class="recommendations">
+                    <div class="recommendations-header">
+                        <h6>Perfis Recomendados</h6>
+                        <div class="header-actions">
+                            <i class="fas fa-sync-alt"></i>
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendations-list">
+                        <a href="#" class="profile-recommendation">
+                            <img src="./img/guvsbdswsaaj9ki.webp" alt="Background" class="recommendation-bg">
+                            <div class="recommendation-overlay"></div>
+                            <div class="recommendation-content">
+                                <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="recommendation-avatar">
+                                <div class="recommendation-info">
+                                    <h6>BAD MI | MC MIREL... <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                                    <small>@badmi</small>
+                                </div>
+                                <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="profile-recommendation">
+                            <img src="./img/clara-aguilar_4957.webp" alt="Background" class="recommendation-bg">
+                            <div class="recommendation-overlay"></div>
+                            <div class="recommendation-content">
+                                <img src="./img/clara-aguilar_4957.webp" alt="Clara" class="recommendation-avatar">
+                                <div class="recommendation-info">
+                                    <h6>Clara EX BBB <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                                    <small>@claraaguilar</small>
+                                </div>
+                                <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="profile-recommendation">
+                            <img src="./img/tal-da-loira_0080.webp" alt="Background" class="recommendation-bg">
+                            <div class="recommendation-overlay"></div>
+                            <div class="recommendation-content">
+                                <img src="./img/tal-da-loira_0080.webp" alt="Talda" class="recommendation-avatar">
+                                <div class="recommendation-info">
+                                    <h6>TALDALÔIRAOFICIAL <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                                    <small>@taldaloiraoficial</small>
+                                </div>
+                                <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="profile-recommendation">
+                            <img src="./img/vf3BRJqX.webp" alt="Background" class="recommendation-bg">
+                            <div class="recommendation-overlay"></div>
+                            <div class="recommendation-content">
+                                <img src="./img/vf3BRJqX.webp" alt="Mari Ávila" class="recommendation-avatar">
+                                <div class="recommendation-info">
+                                    <h6>Mari Ávila <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                                    <small>@mariavila</small>
+                                </div>
+                                <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="profile-recommendation">
+                            <img src="./img/Gaby-Lopez-@gabylopez-Melhores-Videos-Porno-Onlyfans-Gratis-10.png.webp" alt="Background" class="recommendation-bg">
+                            <div class="recommendation-overlay"></div>
+                            <div class="recommendation-content">
+                                <img src="./img/Gaby-Lopez-@gabylopez-Melhores-Videos-Porno-Onlyfans-Gratis-10.png.webp" alt="Gaby Lopez" class="recommendation-avatar">
+                                <div class="recommendation-info">
+                                    <h6>GABY LOPEZ <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                                    <small>@gabylopez</small>
+                                </div>
+                                <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="profile-recommendation">
+                            <img src="./img/vf3BRJqX.webp" alt="Background" class="recommendation-bg">
+                            <div class="recommendation-overlay"></div>
+                            <div class="recommendation-content">
+                                <img src="./img/vf3BRJqX.webp" alt="Maria Gabriela" class="recommendation-avatar">
+                                <div class="recommendation-info">
+                                    <h6>MARIA GABRIELA <i class="fas fa-check-circle" style="color: #FF6B47;"></i></h6>
+                                    <small>@Mariagabrielavip</small>
+                                </div>
+                                <i class="fas fa-ellipsis-v recommendation-menu"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showPage(pageType) {
+            // Remove active class from all nav links
+            document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Hide all pages
+            document.querySelectorAll('.home-page, .vendas-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page and activate nav link
+            if (pageType === 'home') {
+                document.querySelector('.home-page').classList.add('active');
+                document.querySelector('[onclick="showPage(\'home\')"]').classList.add('active');
+            } else if (pageType === 'vendas') {
+                document.querySelector('.vendas-page').classList.add('active');
+                document.querySelector('[onclick="showPage(\'vendas\')"]').classList.add('active');
+            }
+        }
+
+        function toggleAvatarDropdown() {
+            const dropdownMobile = document.getElementById('avatarDropdown');
+            const dropdownDesktop = document.getElementById('avatarDropdownDesktop');
+            
+            // Toggle appropriate dropdown based on screen size
+            if (window.innerWidth <= 400) {
+                if (dropdownMobile) {
+                    dropdownMobile.style.display = dropdownMobile.style.display === 'block' ? 'none' : 'block';
+                }
+                if (dropdownDesktop) {
+                    dropdownDesktop.style.display = 'none';
+                }
+            } else {
+                if (dropdownDesktop) {
+                    dropdownDesktop.style.display = dropdownDesktop.style.display === 'block' ? 'none' : 'block';
+                }
+                if (dropdownMobile) {
+                    dropdownMobile.style.display = 'none';
+                }
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const avatarWrappers = document.querySelectorAll('.avatar-wrapper');
+            let isClickInsideAvatar = false;
+            
+            avatarWrappers.forEach(wrapper => {
+                if (wrapper.contains(event.target)) {
+                    isClickInsideAvatar = true;
+                }
+            });
+            
+            if (!isClickInsideAvatar) {
+                const dropdowns = document.querySelectorAll('.avatar-dropdown');
+                dropdowns.forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+
+        // Close dropdown when window is resized
+        window.addEventListener('resize', function() {
+            const dropdowns = document.querySelectorAll('.avatar-dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
