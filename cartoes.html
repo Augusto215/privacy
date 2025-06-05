@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendas - Privacy</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    <style>
-            body {
+<style>
+      <style>
+        body {
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -515,9 +506,20 @@
         }
         
         .dropdown-header {
-            padding: 20px;
+            padding: 20px !important;
             border-bottom: 1px solid #eee;
             text-align: center;
+        }
+
+        .nav-tabs .nav-link:focus 
+        {
+            border: none !important;
+        }
+
+        .nav-tabs .nav-link:focus-visible
+        {
+            box-shadow: none !important;
+            border: none;
         }
         
         .dropdown-header h6 {
@@ -909,7 +911,11 @@
             font-weight: 500;
             margin-bottom: 10px;
         }
-        
+        .dropdown-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
         .vendas-metric .amount {
             color: #333;
             font-size: 38px;
@@ -931,9 +937,7 @@
     <div class="mobile-header">
         <div class="mobile-header-content">
             <div class="mobile-logo">
-                <a href="/index.html">
     <img src="img/privacylogo.png" alt="Privacy Logo" class="privacy-logo">
-</a>
   
 </div>
 
@@ -1008,7 +1012,7 @@
             Meus Cartões
         </a>
         <a href="#" class="dropdown-menu-item">
-            <img src="./img/privacy.png" alt="Criador" class="dropdown-icon">
+            <img src="./img/user-plus-icon.png" alt="Criador" class="dropdown-icon">
             Torne-se Criador
         </a>
         
@@ -1069,167 +1073,64 @@
     opacity: 1;
     transform: scale(1.1);
 }
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .main-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 0;
-        }
-        
-        /* Estilo da barra de navegação */
-        .nav-tabs {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-        
-        .nav-tabs .nav-item {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .nav-tabs .nav-link {
-            border: none;
-            color: #aaa;
-            padding: 15px 0;
-            font-size: 22px;
-            transition: all 0.3s;
-            background-color: transparent;
-        }
-        
-        .nav-tabs .nav-link.active {
-            border-bottom: 3px solid #f0a868;
-            color: #f0a868;
-            background-color: transparent;
-        }
-        
-        /* Estilo do card de vendas */
-        .sales-card {
-            background-color: #fff;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 0 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .sales-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .sales-icon {
-            width: 36px;
-            height: 36px;
-            background-color: #f8f3e9;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-        }
-        
-        .sales-icon i {
-            color: #9e7e57;
-            font-size: 16px;
-        }
-        
-        .sales-title {
-            color: #6b5a45;
-            font-weight: 600;
-            font-size: 20px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-        
-        .sales-amount {
-            margin: 20px 0;
-        }
-        
-        .sales-label {
-            color: #999;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        
-        .sales-value {
-            color: #6b7a99;
-            font-size: 26px;
-            font-weight: 600;
-            margin: 0;
-        }
 
-        i
-        {
-            font-size: 16px !important;
-        }
-
-        h3
-        {
-            font-size: 20px !important;
-        }
-
-        h2
-        {
-            font-size: 20px !important;
-        }
-        
-    </style>
-    
-
-    <div class="main-container" style="display: block !important;">
-        <!-- Barra de navegação -->
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-dollar-sign"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-users"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-user-plus"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-chart-line"></i></a>
-            </li>
-        </ul>
-        
-        <!-- Card de vendas -->
-        <div class="sales-card">
-            <div class="sales-header">
-                <div class="sales-icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
-                <h2 class="sales-title">VENDAS</h2>
+.nav-link.active
+{
+    border: none !important;
+}
+</style>
+</style>
+<div class="container my-5">
+    <ul class="nav nav-tabs" id="cardTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro" type="button" role="tab" aria-controls="cadastro" aria-selected="true">
+          Cadastrar Cartão
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="transacoes-tab" data-bs-toggle="tab" data-bs-target="#transacoes" type="button" role="tab" aria-controls="transacoes" aria-selected="false">
+          Últimas Transações
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content p-4 bg-white shadow-sm rounded-bottom" id="cardTabsContent">
+      <div class="tab-pane fade show active" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
+        <form>
+          <div class="mb-3">
+            <label for="numeroCartao" class="form-label">Número do Cartão *</label>
+            <input type="text" class="form-control" id="numeroCartao" required>
+          </div>
+          <div class="mb-3">
+            <label for="nomeCartao" class="form-label">Nome (como escrito no cartão) *</label>
+            <input type="text" class="form-control" id="nomeCartao" required>
+          </div>
+          <div class="mb-3">
+            <label for="cpfTitular" class="form-label">CPF do Titular do Cartão *</label>
+            <input type="text" class="form-control" id="cpfTitular" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="validade" class="form-label">Validade *</label>
+              <input type="text" class="form-control" placeholder="MM/AA" id="validade" required>
             </div>
-            
-            <div class="sales-amount">
-                <div class="sales-label">Hoje</div>
-                <h3 class="sales-value">R$ 63,68</h3>
+            <div class="col-md-6 mb-3">
+              <label for="cvv" class="form-label">CVV *</label>
+              <input type="text" class="form-control" id="cvv" required>
             </div>
-            
-            <div class="sales-amount">
-                <div class="sales-label">No mês</div>
-                <h3 class="sales-value">R$ 770,53</h3>
-            </div>
-            
-            <div class="sales-amount">
-                <div class="sales-label">Total faturamento histórico</div>
-                <h3 class="sales-value">R$ 3.055,88</h3>
-            </div>
-        </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Confirmar</button>
+          <button type="reset" class="btn btn-secondary ms-2">Cancelar</button>
+          <div class="mt-3 text-muted small">
+            As cobranças em seu extrato do cartão de crédito aparecerão como <strong>ORANGE SEA</strong>.
+          </div>
+        </form>
+      </div>
+      <div class="tab-pane fade" id="transacoes" role="tabpanel" aria-labelledby="transacoes-tab">
+        <p class="text-center text-muted">Sem dados</p>
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
+  </div>
+  <script>
         function showPage(pageType) {
             // Remove active class from all nav links
             document.querySelectorAll('.sidebar .nav-link').forEach(link => {
@@ -1299,8 +1200,8 @@
                 dropdown.style.display = 'none';
             });
         });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
+  </script>
+  <!-- Requisitos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
