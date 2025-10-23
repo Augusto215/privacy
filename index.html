@@ -439,34 +439,17 @@
             align-items: center;
         }
         
-        .mobile-logo i {
-            background: linear-gradient(45deg, #FF7B47, #FF5722);
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 8px;
-            font-size: 14px;
-        }
-        
-        .mobile-logo span {
-            font-weight: 500;
-            color: #666;
-            font-size: 14px;
-        }
-        
         .mobile-nav-icons {
             display: flex;
             align-items: center;
             gap: 18px;
         }
         
-        .mobile-nav-icons i {
-            color: #666;
-            font-size: 18px;
+        .mobile-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
             cursor: pointer;
         }
         
@@ -689,7 +672,7 @@
         }
         
         .mobile-post-actions {
-            display: flex;
+            display: none;
             justify-content: space-around;
             padding-top: 10px;
             border-top: 1px solid #f0f0f0;
@@ -715,6 +698,103 @@
             margin-right: 6px;
             font-size: 14px;
         }
+        
+        /* Estatísticas do post (curtidas e comentários) */
+        .mobile-post-stats {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .post-stats-icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        
+        .post-stats-icons i {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .post-stats-text {
+            font-size: 13px;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .post-stats-text .stat-count {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .stat-plural {
+            color: #666;
+        }
+        
+        /* Estilo para post com vídeo */
+        .mobile-post-media.video-post {
+            position: relative;
+        }
+        
+        .mobile-post-media.video-post video {
+            display: block;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        /* Overlay e botão de play */
+        .video-play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: all;
+        }
+        
+        .video-play-overlay:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+        
+        .video-play-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .video-play-button {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .video-play-overlay:hover .video-play-button {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .video-play-button i {
+            color: #1a1a1a;
+            font-size: 26px;
+            margin-left: 4px; /* Ajuste visual para centralizar o ícone de play */
+        }
+        
         .mobile-recommendations {
             margin: 0;
             padding: 0 20px;
@@ -930,119 +1010,105 @@
         <div class="mobile-header-content">
             <div class="mobile-logo">
                 <a href="/index.html">
-    <img src="img/privacylogo.png" alt="Privacy Logo" class="privacy-logo">
-</a>
-  
-</div>
+                    <img src="img/privacylogo.png" alt="Privacy Logo" class="privacy-logo">
+                </a>
+            </div>
 
-<style>
-    .privacy-logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-right: 8px;
-    object-fit: cover;
-}
-
-/* OU usando background-image */
-.privacy-logo-bg {
-    width: 32px;
-    height: 32px;
-    background-image: url('caminho/para/logo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.nav-icon {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    transition: all 0.3s;
-    opacity: 0.8;
-}
-
-.nav-icon:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
-</style>
             <div class="mobile-nav-icons">
-             <img src="./img/search.png" alt="Buscar" class="nav-icon">
-<img src="./img/post.png" alt="Adicionar" class="nav-icon">         
-<img src="./img/chat.png" alt="Comentários" class="nav-icon">       
-<img src="./img/bell.png" alt="Notificações" class="nav-icon">
+                <img src="./img/search.png" alt="Buscar" class="nav-icon">
+                <img src="./img/post.png" alt="Adicionar" class="nav-icon">         
+                <img src="./img/chat.png" alt="Comentários" class="nav-icon">       
+                <img src="./img/bell.png" alt="Notificações" class="nav-icon">
                 <div class="avatar-wrapper">
                     <img src="img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="Avatar" class="mobile-avatar" onclick="toggleAvatarDropdown()">
                     
-                    <!-- Avatar Dropdown -->
-              <div class="avatar-dropdown" id="avatarDropdown">
-    <div class="dropdown-header">
-        <h6>Safadabemperversa</h6>
-        <div class="dropdown-stats">0 seguidores 38 seguindo</div>
-    </div>
-    
-    <div class="dropdown-menu-list">
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/user.png" alt="Perfil" class="dropdown-icon">
-            Meu Perfil
-        </a>
-        <a href="vendas.html" class="dropdown-menu-item" onclick="showPage('vendas'); toggleAvatarDropdown();">
-            <img src="./img/money.png" alt="Vendas" class="dropdown-icon">
-            Vendas
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/follow.png" alt="Seguidores" class="dropdown-icon">
-            Seguidores
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/colletion.png" alt="Coleções" class="dropdown-icon">
-            Coleções
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/card.png" alt="Cartões" class="dropdown-icon">
-            Meus Cartões
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/privacy.png" alt="Criador" class="dropdown-icon">
-            Torne-se Criador
-        </a>
-        
-        <div class="dropdown-separator"></div>
-        
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/options.png" alt="Configurações" class="dropdown-icon">
-            Configurações
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/shield.png" alt="Segurança" class="dropdown-icon">
-            Segurança e Privacidade
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/idioma.png" alt="Idioma" class="dropdown-icon">
-            Português
-        </a>
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/help.png" alt="Ajuda" class="dropdown-icon">
-            Ajuda
-        </a>
-        
-        <div class="dropdown-separator"></div>
-        
-        <a href="#" class="dropdown-menu-item">
-            <img src="./img/quit.png" alt="Sair" class="dropdown-icon">
-            Sair
-        </a>
-                </div>
-                </div>
+                    <!-- Avatar Dropdown Mobile -->
+                    <div class="avatar-dropdown" id="avatarDropdown">
+                        <div class="dropdown-header">
+                            <h6>Safadabemperversa</h6>
+                            <div class="dropdown-stats">0 seguidores 38 seguindo</div>
+                        </div>
+                        
+                        <div class="dropdown-menu-list">
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/user.png" alt="Perfil" class="dropdown-icon">
+                                Meu Perfil
+                            </a>
+                            <a href="vendas.html" class="dropdown-menu-item">
+                                <img src="./img/money.png" alt="Vendas" class="dropdown-icon">
+                                Vendas
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/follow.png" alt="Seguidores" class="dropdown-icon">
+                                Seguidores
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/colletion.png" alt="Coleções" class="dropdown-icon">
+                                Coleções
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/card.png" alt="Cartões" class="dropdown-icon">
+                                Meus Cartões
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/privacy.png" alt="Criador" class="dropdown-icon">
+                                Torne-se Criador
+                            </a>
+                            
+                            <div class="dropdown-separator"></div>
+                            
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/options.png" alt="Configurações" class="dropdown-icon">
+                                Configurações
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/shield.png" alt="Segurança" class="dropdown-icon">
+                                Segurança e Privacidade
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/idioma.png" alt="Idioma" class="dropdown-icon">
+                                Português
+                            </a>
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/help.png" alt="Ajuda" class="dropdown-icon">
+                                Ajuda
+                            </a>
+                            
+                            <div class="dropdown-separator"></div>
+                            
+                            <a href="#" class="dropdown-menu-item">
+                                <img src="./img/quit.png" alt="Sair" class="dropdown-icon">
+                                Sair
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 <style>
+    .privacy-logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 8px;
+        object-fit: cover;
+    }
+
+    .nav-icon {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        transition: all 0.3s;
+        opacity: 0.8;
+    }
+
+    .nav-icon:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
     .dropdown-icon {
     width: 16px;
     height: 16px;
@@ -1171,6 +1237,54 @@
     <!-- Mobile Posts -->
     
     <div class="mobile-posts">
+          <div class="mobile-post">
+            <div class="mobile-post-header">
+                <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="mobile-post-avatar">
+                <div class="mobile-post-user-info">
+                    <h6>Safadabemperversa<i class="fas fa-check-circle" style="color: #007bff;"></i></h6>
+                    <small>@Safadabemperversa</small>
+                </div>
+                <div class="mobile-post-time">
+                    <i class="far fa-clock"></i> 23:45
+                    <i class="fas fa-ellipsis-v ms-2"></i>
+                </div>
+            </div>
+            
+            <div class="mobile-post-content">
+                <p>Novidade pra vocês.. rsrs  🔥 🔥</p>
+            </div>
+            
+            <div class="mobile-post-media video-post">
+                <video id="videoPost" controls style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px;">
+                    <source src="img/WhatsApp Video 2025-10-22 at 18.32.57.mp4" type="video/mp4">
+                    Seu navegador não suporta a reprodução de vídeos.
+                </video>
+                <div class="video-play-overlay" onclick="playVideo(this)">
+                    <div class="video-play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estatísticas do post -->
+            <div class="mobile-post-stats">
+                <div class="post-stats-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="post-stats-text">
+                    <span class="stat-count">81</span> curtida<span class="stat-plural">s</span> • 
+                    <span class="stat-count">8</span> comentário<span class="stat-plural">s</span>
+                </div>
+            </div>
+            
+            <div class="mobile-post-actions">
+                <span><i class="far fa-heart"></i> Curtir</span>
+                <span><i class="far fa-comment"></i> Comentar</span>
+                <span><i class="fas fa-share"></i> Compartilhar</span>
+            </div>
+        </div>
         <div class="mobile-post">
             <div class="mobile-post-header">
                 <img src="./img/1_mc_mirella_1024x768_jpg-41744241.webp" alt="BAD MI" class="mobile-post-avatar">
@@ -1192,13 +1306,25 @@
             <div class="mobile-post-media">
                 <img src="./img/guvsbdswsaaj9ki.webp" alt="Post image">
             </div>
-            
+               <!-- Estatísticas do post -->
+            <div class="mobile-post-stats">
+                <div class="post-stats-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="post-stats-text">
+                    <span class="stat-count">124</span> curtida<span class="stat-plural">s</span> • 
+                    <span class="stat-count">23</span> comentário<span class="stat-plural">s</span>
+                </div>
+            </div>
             <div class="mobile-post-actions">
                 <span><i class="far fa-heart"></i> Curtir</span>
                 <span><i class="far fa-comment"></i> Comentar</span>
                 <span><i class="fas fa-share"></i> Compartilhar</span>
             </div>
         </div>
+       
 
         <div class="mobile-post">
             <div class="mobile-post-header">
@@ -1220,7 +1346,18 @@
             <div class="mobile-post-media">
                 <img src="./img/entretenimento-mc-mirella-1743188480.webp" alt="Post image">
             </div>
-            
+               <!-- Estatísticas do post -->
+            <div class="mobile-post-stats">
+                <div class="post-stats-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="post-stats-text">
+                    <span class="stat-count">291</span> curtida<span class="stat-plural">s</span> • 
+                    <span class="stat-count">39</span> comentário<span class="stat-plural">s</span>
+                </div>
+            </div>
             <div class="mobile-post-actions">
                 <span><i class="far fa-heart"></i> Curtir</span>
                 <span><i class="far fa-comment"></i> Comentar</span>
@@ -1228,6 +1365,8 @@
             </div>
         </div>
     </div>
+
+    
 
    
     <div class="main-container">
@@ -1380,6 +1519,7 @@
                                     <img src="./img/guvsbdswsaaj9ki.webp" alt="Post image">
                                 </div>
                                 
+                                
                                 <div class="post-actions">
                                     <span><i class="far fa-heart"></i> Curtir</span>
                                     <span><i class="far fa-comment"></i> Comentar</span>
@@ -1410,6 +1550,7 @@
                                 <div class="post-media">
                                     <img src="./img/entretenimento-mc-mirella-1743188480.webp" alt="Post image">
                                 </div>
+                                
                                 
                                 <div class="post-actions">
                                     <span><i class="far fa-heart"></i> Curtir</span>
@@ -1638,6 +1779,49 @@
             const dropdowns = document.querySelectorAll('.avatar-dropdown');
             dropdowns.forEach(dropdown => {
                 dropdown.style.display = 'none';
+            });
+        });
+
+        // Função para controlar o botão de play do vídeo
+        function playVideo(overlayElement) {
+            const videoPost = overlayElement.closest('.video-post');
+            const video = videoPost.querySelector('video');
+            
+            if (video) {
+                video.play();
+                overlayElement.classList.add('hidden');
+                
+                // Se o usuário pausar o vídeo, mostra o botão novamente
+                video.addEventListener('pause', function() {
+                    if (!video.ended) {
+                        overlayElement.classList.remove('hidden');
+                    }
+                });
+                
+                // Esconde o botão quando o vídeo terminar
+                video.addEventListener('ended', function() {
+                    overlayElement.classList.remove('hidden');
+                });
+            }
+        }
+        
+        // Adiciona eventos de play/pause a todos os vídeos
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('.video-post video');
+            videos.forEach(video => {
+                const overlay = video.parentElement.querySelector('.video-play-overlay');
+                
+                video.addEventListener('play', function() {
+                    if (overlay) {
+                        overlay.classList.add('hidden');
+                    }
+                });
+                
+                video.addEventListener('pause', function() {
+                    if (overlay && !video.ended) {
+                        overlay.classList.remove('hidden');
+                    }
+                });
             });
         });
     </script>

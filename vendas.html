@@ -6,6 +6,17 @@
     <title>Vendas - Privacy</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.3.0"
+  }
+}
+</script>
 </head>
 <body>
     <style>
@@ -917,6 +928,55 @@
             margin: 0;
         }
         
+        /* Vendas Detalhadas por Dia */
+        .daily-sales-section {
+            margin-top: 30px;
+            background: white;
+            margin:20px 15px 15px 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .daily-sales-summary {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .summary-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .summary-value.total {
+            color: #2ecc71;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
         .home-page.active {
             display: block;
         }
@@ -1227,6 +1287,26 @@
                 <h3 class="sales-value">R$ 3.055,88</h3>
             </div>
         </div>
+        
+        <!-- Vendas Detalhadas por Dia -->
+        <div class="daily-sales-section">
+            <h2 class="mb-3 sales-title">Vendas por Dia</h2>
+            
+            <div class="chart-container" style="position: relative; height:300px; width:100%;">
+                <canvas id="dailySalesChart"></canvas>
+            </div>
+            
+            <div class="daily-sales-summary">
+                <div class="summary-item">
+                    <span class="summary-label">Total de Vendas:</span>
+                    <span class="summary-value">29 vendas</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Arrecadado:</span>
+                    <span class="sales-title">R$ 4.969,00</span>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -1299,8 +1379,100 @@
                 dropdown.style.display = 'none';
             });
         });
+
+        // Chart.js implementation for daily sales
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('dailySalesChart').getContext('2d');
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(255, 107, 107, 0.8)');
+            gradient.addColorStop(1, 'rgba(255, 142, 142, 0.6)');
+
+            const dailySalesData = {
+                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                datasets: [{
+                    label: 'Vendas (R$)',
+                    data: [544, 820, 1050, 680, 875, 700, 350],
+                    backgroundColor: gradient,
+                    borderColor: 'rgba(255, 107, 107, 1)',
+                    borderWidth: 1.5,
+                    borderRadius: 8,
+                    barPercentage: 0.6,
+                }]
+            };
+
+            const config = {
+                type: 'bar',
+                data: dailySalesData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#fff',
+                            titleColor: '#333',
+                            bodyColor: '#666',
+                            borderColor: '#eee',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f3f4f6',
+                            },
+                            ticks: {
+                                color: '#9ca3af',
+                                font: {
+                                    size: 12,
+                                },
+                                callback: function(value) {
+                                    return 'R$ ' + value;
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 13,
+                                    weight: '500'
+                                },
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuad'
+                    }
+                }
+            };
+            
+            new Chart(ctx, config);
+        });
+
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
